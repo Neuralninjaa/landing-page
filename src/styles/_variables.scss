@@ -1,0 +1,27 @@
+:root {
+  /* Light Mode (Varsayılan) */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f3f4f6;
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
+  
+  --primary-color: #3b82f6; /* Marka Rengi: Mavi */
+  --primary-hover: #2563eb;
+  
+  --border-color: #e5e7eb;
+  --radius-md: 8px;
+  --font-main: 'Inter', system-ui, sans-serif;
+}
+
+/* Dark Mode Tanımları */
+[data-theme='dark'] {
+  --bg-primary: #111827;
+  --bg-secondary: #1f2937;
+  --text-primary: #f9fafb;
+  --text-secondary: #9ca3af;
+  
+  --primary-color: #60a5fa;
+  --primary-hover: #3b82f6;
+  
+  --border-color: #374151;
+}

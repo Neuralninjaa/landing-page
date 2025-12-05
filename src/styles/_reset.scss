@@ -1,0 +1,20 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  
+  /* Tema değişirken renklerin yumuşak geçmesi için */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+button, input {
+  font-family: inherit;
+}
