@@ -1,0 +1,102 @@
+/* Değişkenleri çağırmak için doğru yolu veriyoruz */
+@use '../../styles/variables';
+
+.ui-btn {
+  /* Temel Ayarlar */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-family: var(--font-main);
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  line-height: 1;
+  gap: 0.5rem;
+
+  /* --- Boyutlar (Sizes) --- */
+  &--sm {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+  }
+
+  &--md {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  &--lg {
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+  }
+
+  &--full {
+    width: 100%;
+    display: flex;
+  }
+
+  /* --- Varyasyonlar (Variants) --- */
+  &--primary {
+    background-color: var(--primary-color);
+    color: #ffffff;
+
+    &:hover:not(:disabled) {
+      // Rengi %10 koyulaştırır (SCSS özelliği)
+      background-color: color-mix(in srgb, var(--primary-color), black 10%);
+    }
+  }
+
+  &--secondary {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+
+    &:hover:not(:disabled) {
+      background-color: var(--border-color);
+    }
+  }
+
+  &--outline {
+    background-color: transparent;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+
+    &:hover:not(:disabled) {
+      background-color: var(--primary-color);
+      color: #ffffff;
+    }
+  }
+  
+  &--danger {
+    background-color: #ef4444;
+    color: white;
+    
+    &:hover:not(:disabled) {
+      background-color: #dc2626;
+    }
+  }
+
+  &--ghost {
+    background-color: transparent;
+    color: var(--text-secondary);
+    
+    &:hover:not(:disabled) {
+      background-color: var(--bg-secondary);
+      color: var(--text-primary);
+    }
+  }
+
+  /* --- Durumlar (States) --- */
+  &:disabled,
+  &--loading {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+  }
+}
