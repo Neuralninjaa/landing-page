@@ -1,32 +1,121 @@
+// src/App.tsx
+import React, { useState } from 'react';
+import './styles/main.scss'; // Global stilleriniz (varsa)
+
+// Bileşenleri doğru yoldan çağırdığımıza emin olun
+import { Input } from './components/Input/Input';
 import { Button } from './components/Button/Button';
 
 function App() {
-  return (
-    <div style={{ padding: '50px', display: 'flex', flexDirection: 'column', gap: '20px', alignItems: 'flex-start' }}>
-      <h1>Button Component Test</h1>
+  // --- Form Mantığı (State'ler) ---
+  const [formData, setFormData] = useState({
+    name: '',
+    email: ''
+  });
+
+  const [errors, setErrors] = useState({
+    name: '',
+    email: ''
+  });
+
+  // Input değiştikçe çalışacak fonksiyon
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+    
+    // Kullanıcı yazarken ilgili hatayı temizle
+    if (errors[name as keyof typeof errors]) {
+      setErrors(prev => ({ ...prev, [name]: '' }));
+    }
+  };
+
+  // Gönder butonuna basılınca çalışacak fonksiyon
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault(); // Sayfanın yenilenmesini engelle
+    
+    const newErrors = { name: '', email: '' };
+    let isValid = true;
+
+    // 1. İsim kontrolü
+    if (!formData.name.trim()) {
+      newErrors.name = 'Lütfen adınızı giriniz.';
+      isValid = false;
+    }
+
+    // 2. Email kontrolü (Regex ile format kontrolü)
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!formData.email) {
+      newErrors.email = 'E-posta adresi zorunludur.';
+      isValid = false;
+    } else if (!emailRegex.test(formData.email)) {
+      newErrors.email = 'Geçerli bir e-posta adresi giriniz.';
+      isValid = false;
+    }
+
+    setErrors(newErrors);
+
+    if (isValid) {
+      // Başarılı durum
+      alert(`Form Başarılı!\nAd: ${formData.name}\nEmail: ${formData.email}`);
+      console.log('Gönderilen Veri:', formData);
       
-      {/* Varyasyonlar */}
-      <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-        <Button variant="primary">Primary</Button>
-        <Button variant="secondary">Secondary</Button>
-        <Button variant="outline">Outline</Button>
-        <Button variant="danger">Danger</Button>
-        <Button variant="ghost">Ghost</Button>
-      </div>
+      // Formu sıfırla
+      setFormData({ name: '', email: '' });
+    }
+  };
 
-      {/* Boyutlar */}
-      <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-        <Button size="sm">Small</Button>
-        <Button size="md">Medium</Button>
-        <Button size="lg">Large</Button>
-      </div>
+  return (
+    <div className="App">
+      <main className="container" style={{ maxWidth: '400px', margin: '50px auto', padding: '0 20px' }}>
+        
+        <h1 style={{ textAlign: 'center', marginBottom: '2rem' }}>Hoş Geldiniz</h1>
 
-      {/* Durumlar */}
-      <div style={{ display: 'flex', gap: '10px' }}>
-        <Button disabled>Disabled</Button>
-        <Button isLoading>Loading</Button>
-        <Button fullWidth>Full Width Button</Button>
-      </div>
+        {/* --- İletişim Formu --- */}
+        <section className="contact-form">
+          <h2 style={{ marginBottom: '1.5rem' }}>İletişim</h2>
+          
+          <form onSubmit={handleSubmit} noValidate>
+            
+            {/* Ad Soyad Input */}
+            <div style={{ marginBottom: '1rem' }}>
+              <Input
+                id="name"
+                name="name"
+                label="Adınız Soyadınız"
+                placeholder="Örn: Yusuf Can"
+                value={formData.name}
+                onChange={handleChange}
+                error={errors.name}
+              />
+            </div>
+
+            {/* Email Input */}
+            <div style={{ marginBottom: '1.5rem' }}>
+              <Input
+                id="email"
+                name="email"
+                type="email"
+                label="E-posta Adresi"
+                placeholder="ornek@mail.com"
+                value={formData.email}
+                onChange={handleChange}
+                error={errors.email}
+              />
+            </div>
+
+            {/* Submit Butonu */}
+            <Button 
+              variant="primary" 
+              size="md" 
+              type="submit"
+            >
+              Gönder
+            </Button>
+            
+          </form>
+        </section>
+
+      </main>
     </div>
   );
 }
