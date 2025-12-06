@@ -5,10 +5,12 @@ import './styles/main.scss';
 import { Input } from './components/Input/Input';
 import { Button } from './components/Button/Button';
 import { Card } from './components/Card/Card'; 
-import { Accordion} from './components/Accordion/Accordion'; // Yeni eklenen bileşen
+import { Accordion } from './components/Accordion/Accordion'; 
+import { Modal } from './components/Modal/Modal'; 
 
 function App() {
-  // --- Form Mantığı (Değişmedi) ---
+  const [isModalOpen, setIsModalOpen] = useState(false); 
+
   const [formData, setFormData] = useState({
     name: '',
     email: ''
@@ -19,6 +21,7 @@ function App() {
     email: ''
   });
 
+  // --- 2. HANDLER FONKSİYONLARI ---
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -57,16 +60,16 @@ function App() {
     }
   };
 
+  // --- 3. RENDER (JSX) ---
   return (
     <div className="App">
-      {/* Container genişliğini biraz artırdım ki yan yana kartlar sığabilsin (responsive) */}
       <main className="container" style={{ maxWidth: '800px', margin: '50px auto', padding: '0 20px' }}>
         
         <h1 style={{ textAlign: 'center', marginBottom: '2rem' }}>Component Test Sahnesi</h1>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
           
-          {/* 1. KULLANIM: Formu Card İçine Aldık (Elevated) */}
+          {/* 1. KULLANIM: Form */}
           <section className="contact-section">
             <Card variant="elevated" padding="lg">
               <h2 style={{ marginBottom: '1.5rem', borderBottom: '1px solid #eee', paddingBottom: '10px' }}>İletişim Formu</h2>
@@ -104,7 +107,7 @@ function App() {
             </Card>
           </section>
 
-          {/* 2. KULLANIM: Bilgi Kartı (Outlined & Interactive) */}
+          {/* 2. KULLANIM: Bilgi Kartı */}
           <section className="info-section">
             <Card variant="outlined" padding="lg" isInteractive={true} style={{ height: '100%' }}>
               <h3 style={{ marginBottom: '1rem', color: '#666' }}>Bileşen Özellikleri</h3>
@@ -122,10 +125,8 @@ function App() {
 
           {/* 3. KULLANIM: SSS (Accordion) */}
           <section className="faq-section" style={{ gridColumn: '1 / -1' }}> 
-            {/* gridColumn 1/-1 ile tam genişlik kaplamasını sağladık, SSS genelde geniş olur */}
             <Card variant="outlined" padding="lg">
               <h2 style={{ marginBottom: '1.5rem', textAlign: 'center' }}>Sıkça Sorulan Sorular</h2>
-              
               <Accordion 
                 items={[
                   {
@@ -147,7 +148,46 @@ function App() {
               />
             </Card>
           </section>
-        </div>
+
+          {/* 4. KULLANIM: Modal Trigger */}
+          <section className="modal-section" style={{ gridColumn: '1 / -1', textAlign: 'center', marginTop: '2rem' }}>
+            <Card variant="elevated" padding="lg">
+              <h2 style={{ marginBottom: '1rem' }}>Detaylı Bilgi</h2>
+              <p style={{ marginBottom: '1.5rem', color: '#666' }}>
+                Proje detaylarını ve lisans sözleşmesini görüntülemek için aşağıdaki butona tıklayınız.
+              </p>
+              <Button 
+                variant="outline" 
+                onClick={() => setIsModalOpen(true)}
+              >
+                Sözleşmeyi Oku (Modal Aç)
+              </Button>
+            </Card>
+          </section>
+
+        </div> {/* Grid Bitiş */}
+
+        {/* Modal Bileşeni (Grid dışında olması daha sağlıklı ama içinde de çalışır) */}
+        <Modal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          title="Kullanıcı Sözleşmesi"
+          footer={
+            <>
+              <Button variant="ghost" onClick={() => setIsModalOpen(false)}>Vazgeç</Button>
+              <Button variant="primary" onClick={() => { alert('Onaylandı!'); setIsModalOpen(false); }}>Kabul Ediyorum</Button>
+            </>
+          }
+        >
+          <p>Bu proje, <strong>Front-end Bootcamp</strong> bitirme projesi kapsamında geliştirilmiştir.</p>
+          <br />
+          <h4>1. Kullanım Şartları</h4>
+          <p>Bu kodlar tamamen eğitim amaçlıdır. Ticari kullanım için uygun değildir ancak geliştirilmeye açıktır.</p>
+          <br />
+          <h4>2. Gizlilik</h4>
+          <p>Form verileri herhangi bir sunucuya gönderilmemektedir, sadece tarayıcı konsoluna yazdırılır.</p>
+        </Modal>
+
       </main>
     </div>
   );
