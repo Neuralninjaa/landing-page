@@ -4,7 +4,8 @@ import './styles/main.scss';
 // Bileşen Importları
 import { Input } from './components/Input/Input';
 import { Button } from './components/Button/Button';
-import { Card } from './components/Card/Card'; // Yeni eklenen bileşen
+import { Card } from './components/Card/Card'; 
+import { Accordion} from './components/Accordion/Accordion'; // Yeni eklenen bileşen
 
 function App() {
   // --- Form Mantığı (Değişmedi) ---
@@ -119,6 +120,33 @@ function App() {
             </Card>
           </section>
 
+          {/* 3. KULLANIM: SSS (Accordion) */}
+          <section className="faq-section" style={{ gridColumn: '1 / -1' }}> 
+            {/* gridColumn 1/-1 ile tam genişlik kaplamasını sağladık, SSS genelde geniş olur */}
+            <Card variant="outlined" padding="lg">
+              <h2 style={{ marginBottom: '1.5rem', textAlign: 'center' }}>Sıkça Sorulan Sorular</h2>
+              
+              <Accordion 
+                items={[
+                  {
+                    id: 1,
+                    title: 'Proje hangi teknolojileri kullanıyor?',
+                    content: 'Bu proje React, TypeScript ve SCSS kullanılarak geliştirilmiştir. Build aracı olarak Vite tercih edilmiştir.'
+                  },
+                  {
+                    id: 2,
+                    title: 'Bileşenler erişilebilir mi?',
+                    content: 'Evet, tüm bileşenler WAI-ARIA standartlarına uygun olarak geliştirilmekte ve klavye navigasyonunu desteklemektedir.'
+                  },
+                  {
+                    id: 3,
+                    title: 'Responsive tasarım var mı?',
+                    content: 'Kesinlikle. Mobil-öncelikli (mobile-first) yaklaşım benimsenmiştir ve 3 farklı breakpoint desteği mevcuttur.'
+                  }
+                ]} 
+              />
+            </Card>
+          </section>
         </div>
       </main>
     </div>
