@@ -1,194 +1,48 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './styles/main.scss';
 
-// Bileşen Importları
-import { Input } from './components/Input/Input';
+// Bileşenler
+import { Modal } from './components/Modal/Modal';
 import { Button } from './components/Button/Button';
-import { Card } from './components/Card/Card'; 
-import { Accordion } from './components/Accordion/Accordion'; 
-import { Modal } from './components/Modal/Modal'; 
+
+// Bölümler
+import { Hero } from './sections/Hero/Hero';
+import { Features } from './sections/Features/Features';
+import { Pricing } from './sections/Pricing/Pricing';
+import { FAQ } from './sections/FAQ/FAQ';         // <-- Yeni
+import { Contact } from './sections/Contact/Contact'; // <-- Yeni
 
 function App() {
-  const [isModalOpen, setIsModalOpen] = useState(false); 
+  // Modal state'i sadece Footer'daki sözleşme linki için gerekli olabilir,
+  // şimdilik basitlik adına burada tutabiliriz veya Footer bileşeni yapınca oraya taşırız.
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const [formData, setFormData] = useState({
-    name: '',
-    email: ''
-  });
-
-  const [errors, setErrors] = useState({
-    name: '',
-    email: ''
-  });
-
-  // --- 2. HANDLER FONKSİYONLARI ---
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-    
-    if (errors[name as keyof typeof errors]) {
-      setErrors(prev => ({ ...prev, [name]: '' }));
-    }
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    const newErrors = { name: '', email: '' };
-    let isValid = true;
-
-    if (!formData.name.trim()) {
-      newErrors.name = 'Lütfen adınızı giriniz.';
-      isValid = false;
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!formData.email) {
-      newErrors.email = 'E-posta adresi zorunludur.';
-      isValid = false;
-    } else if (!emailRegex.test(formData.email)) {
-      newErrors.email = 'Geçerli bir e-posta adresi giriniz.';
-      isValid = false;
-    }
-
-    setErrors(newErrors);
-
-    if (isValid) {
-      alert(`Form Başarılı!\nAd: ${formData.name}\nEmail: ${formData.email}`);
-      console.log('Gönderilen Veri:', formData);
-      setFormData({ name: '', email: '' });
-    }
-  };
-
-  // --- 3. RENDER (JSX) ---
   return (
     <div className="App">
-      <main className="container" style={{ maxWidth: '800px', margin: '50px auto', padding: '0 20px' }}>
-        
-        <h1 style={{ textAlign: 'center', marginBottom: '2rem' }}>Component Test Sahnesi</h1>
+      <Hero />
+      <Features />
+      <Pricing />
+      <FAQ />
+      <Contact />
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
-          
-          {/* 1. KULLANIM: Form */}
-          <section className="contact-section">
-            <Card variant="elevated" padding="lg">
-              <h2 style={{ marginBottom: '1.5rem', borderBottom: '1px solid #eee', paddingBottom: '10px' }}>İletişim Formu</h2>
-              
-              <form onSubmit={handleSubmit} noValidate>
-                <div style={{ marginBottom: '1rem' }}>
-                  <Input
-                    id="name"
-                    name="name"
-                    label="Adınız Soyadınız"
-                    placeholder="Örn: Yusuf Can"
-                    value={formData.name}
-                    onChange={handleChange}
-                    error={errors.name}
-                  />
-                </div>
+      {/* Basit Footer */}
+      <footer style={{ padding: '2rem', textAlign: 'center', background: '#1f2937', color: 'white' }}>
+        <p>&copy; 2025 Landing Page Projesi. Tüm hakları saklıdır.</p>
+        <div style={{ marginTop: '1rem' }}>
+          <Button variant="ghost" size="sm" onClick={() => setIsModalOpen(true)} style={{ color: '#9ca3af' }}>
+            Gizlilik ve Şartlar
+          </Button>
+        </div>
+      </footer>
 
-                <div style={{ marginBottom: '1.5rem' }}>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    label="E-posta Adresi"
-                    placeholder="ornek@mail.com"
-                    value={formData.email}
-                    onChange={handleChange}
-                    error={errors.email}
-                  />
-                </div>
-
-                <Button variant="primary" size="md" type="submit" fullWidth>
-                  Gönder
-                </Button>
-              </form>
-            </Card>
-          </section>
-
-          {/* 2. KULLANIM: Bilgi Kartı */}
-          <section className="info-section">
-            <Card variant="outlined" padding="lg" isInteractive={true} style={{ height: '100%' }}>
-              <h3 style={{ marginBottom: '1rem', color: '#666' }}>Bileşen Özellikleri</h3>
-              <p style={{ lineHeight: '1.6', marginBottom: '1rem' }}>
-                Bu bölüm <strong>Card</strong> bileşeninin <code>outlined</code> varyasyonunu kullanır. 
-                Ayrıca <code>isInteractive</code> özelliği açık olduğu için üzerine gelince (hover) hareket eder.
-              </p>
-              <ul style={{ paddingLeft: '20px', lineHeight: '1.8' }}>
-                <li>Responsive Yapı</li>
-                <li>Gölge Yönetimi</li>
-                <li>BEM Standartları</li>
-              </ul>
-            </Card>
-          </section>
-
-          {/* 3. KULLANIM: SSS (Accordion) */}
-          <section className="faq-section" style={{ gridColumn: '1 / -1' }}> 
-            <Card variant="outlined" padding="lg">
-              <h2 style={{ marginBottom: '1.5rem', textAlign: 'center' }}>Sıkça Sorulan Sorular</h2>
-              <Accordion 
-                items={[
-                  {
-                    id: 1,
-                    title: 'Proje hangi teknolojileri kullanıyor?',
-                    content: 'Bu proje React, TypeScript ve SCSS kullanılarak geliştirilmiştir. Build aracı olarak Vite tercih edilmiştir.'
-                  },
-                  {
-                    id: 2,
-                    title: 'Bileşenler erişilebilir mi?',
-                    content: 'Evet, tüm bileşenler WAI-ARIA standartlarına uygun olarak geliştirilmekte ve klavye navigasyonunu desteklemektedir.'
-                  },
-                  {
-                    id: 3,
-                    title: 'Responsive tasarım var mı?',
-                    content: 'Kesinlikle. Mobil-öncelikli (mobile-first) yaklaşım benimsenmiştir ve 3 farklı breakpoint desteği mevcuttur.'
-                  }
-                ]} 
-              />
-            </Card>
-          </section>
-
-          {/* 4. KULLANIM: Modal Trigger */}
-          <section className="modal-section" style={{ gridColumn: '1 / -1', textAlign: 'center', marginTop: '2rem' }}>
-            <Card variant="elevated" padding="lg">
-              <h2 style={{ marginBottom: '1rem' }}>Detaylı Bilgi</h2>
-              <p style={{ marginBottom: '1.5rem', color: '#666' }}>
-                Proje detaylarını ve lisans sözleşmesini görüntülemek için aşağıdaki butona tıklayınız.
-              </p>
-              <Button 
-                variant="outline" 
-                onClick={() => setIsModalOpen(true)}
-              >
-                Sözleşmeyi Oku (Modal Aç)
-              </Button>
-            </Card>
-          </section>
-
-        </div> {/* Grid Bitiş */}
-
-        {/* Modal Bileşeni (Grid dışında olması daha sağlıklı ama içinde de çalışır) */}
-        <Modal
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-          title="Kullanıcı Sözleşmesi"
-          footer={
-            <>
-              <Button variant="ghost" onClick={() => setIsModalOpen(false)}>Vazgeç</Button>
-              <Button variant="primary" onClick={() => { alert('Onaylandı!'); setIsModalOpen(false); }}>Kabul Ediyorum</Button>
-            </>
-          }
-        >
-          <p>Bu proje, <strong>Front-end Bootcamp</strong> bitirme projesi kapsamında geliştirilmiştir.</p>
-          <br />
-          <h4>1. Kullanım Şartları</h4>
-          <p>Bu kodlar tamamen eğitim amaçlıdır. Ticari kullanım için uygun değildir ancak geliştirilmeye açıktır.</p>
-          <br />
-          <h4>2. Gizlilik</h4>
-          <p>Form verileri herhangi bir sunucuya gönderilmemektedir, sadece tarayıcı konsoluna yazdırılır.</p>
-        </Modal>
-
-      </main>
+      {/* Modal */}
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title="Yasal Uyarı"
+      >
+        <p>Bu proje eğitim amaçlı geliştirilmiştir. Hiçbir ticari değeri yoktur.</p>
+      </Modal>
     </div>
   );
 }

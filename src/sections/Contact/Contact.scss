@@ -1,0 +1,29 @@
+.contact {
+  padding: 5rem 0;
+  background-color: #f9fafb;
+
+  &__wrapper {
+    max-width: 500px; // Formun genişliğini kısıtla
+    margin: 0 auto;
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  &__title {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 0.5rem;
+  }
+
+  &__text {
+    color: #6b7280;
+  }
+
+  &__form-group {
+    margin-bottom: 1.5rem;
+  }
+}
