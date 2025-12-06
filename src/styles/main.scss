@@ -1,4 +1,11 @@
 @use 'variables';
 @use 'reset';
 
+.container {
+  width: 100%;
+  max-width: 1280px; // Genişliği biraz artırdık (standart 1200 idi)
+  margin: 0 auto;    // SAĞ-SOL MARGIN AUTO OLMAZSA ORTALANMAZ!
+  padding: 0 2rem;   // Kenarlardan boşluk
+}
+
 /* İlerde global stiller buraya eklenebilir */
