@@ -1,0 +1,38 @@
+@use '../../styles/variables';
+
+.ui-card {
+  /* Temel Kart Ayarları */
+  background-color: var(--bg-surface, #ffffff);
+  border-radius: var(--radius-lg, 12px);
+  color: var(--text-main, #333);
+  overflow: hidden; /* Köşelerden taşmayı önler */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  /* Varyasyon: Elevated (Gölgeli - Varsayılan) */
+  &--elevated {
+    border: 1px solid transparent;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  /* Varyasyon: Outlined (Sadece Çerçeve) */
+  &--outlined {
+    background-color: transparent;
+    border: 1px solid var(--border-color, #e2e8f0);
+    box-shadow: none;
+  }
+
+  /* Padding Seçenekleri */
+  &--p-none { padding: 0; }
+  &--p-sm { padding: 1rem; }
+  &--p-md { padding: 1.5rem; }
+  &--p-lg { padding: 2rem; }
+
+  /* Etkileşim (Hover Efekti) */
+  &--interactive {
+    cursor: pointer;
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+  }
+}
