@@ -4,6 +4,11 @@ Bu proje için yapılan tüm değişiklikler bu dosyada belgelenecektir.
 
 ## [Unreleased]
 ### Eklendi
+- Modal: Kullanıcı etkileşimi ve uyarılar için Modal (Dialog) bileşeni eklendi.
+  - `isOpen`, `onClose`, `title`, `footer` propları.
+  - Klavye erişilebilirliği: `Esc` tuşu ile kapatma özelliği.
+  - Backdrop (arka plan) tıklaması ile kapatma.
+  - Fade-in ve Scale-up CSS animasyonları.
 - Accordion: Sıkça Sorulan Sorular (SSS) ve daraltılabilir içerikler için Accordion bileşeni eklendi.
   - `items` prop: Başlık ve içerik verisi yönetimi için.
   - `aria-expanded` ve `aria-controls` ile tam erişilebilirlik desteği.
@@ -20,5 +25,7 @@ Bu proje için yapılan tüm değişiklikler bu dosyada belgelenecektir.
 - Proje kurulumu (Vite + React + TS) yapıldı.
 
 ### Değiştirildi
-App: Demo ekranı (`App.tsx`) güncellendi. Mevcut iletişim formu `Card` bileşeni ile sarmalandı ve bileşen varyasyonlarını test etmek için 'Bilgi Kartı' bölümü eklendi.
-- App.tsx: İçerik, "Button Component Test" sayfasından "Hoş Geldiniz / İletişim" form yapısına güncellendi.
+- App: Demo ekranı (`App.tsx`) güncellendi. 
+  - "Detaylı Bilgi" ve "Sözleşme" senaryosu için Modal entegrasyonu yapıldı.
+  - Mevcut iletişim formu `Card` bileşeni ile sarmalandı.
+  - `useState` tanımları kapsam (scope) hatalarını önlemek için üst seviyeye taşındı.
