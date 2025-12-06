@@ -4,6 +4,13 @@ Bu proje için yapılan tüm değişiklikler bu dosyada belgelenecektir.
 
 ## [Unreleased]
 ### Eklendi
+- **Landing Page Bölümleri:** Sayfa yapısı modüler hale getirildi ve `src/sections` altına taşındı.
+  - `Hero`: Ana karşılama ekranı.
+  - `Features`: Özellikler ızgarası (Grid).
+  - `Pricing`: Fiyatlandırma kartları ve paket seçenekleri.
+  - `FAQ`: Sıkça Sorulan Sorular bölümü (Accordion entegrasyonu).
+  - `Contact`: İletişim formu bölümü.
+- **Footer:** Sayfa altı bilgileri ve yasal uyarı modal tetikleyicisi içeren footer alanı eklendi.
 - Modal: Kullanıcı etkileşimi ve uyarılar için Modal (Dialog) bileşeni eklendi.
   - `isOpen`, `onClose`, `title`, `footer` propları.
   - Klavye erişilebilirliği: `Esc` tuşu ile kapatma özelliği.
@@ -25,6 +32,7 @@ Bu proje için yapılan tüm değişiklikler bu dosyada belgelenecektir.
 - Proje kurulumu (Vite + React + TS) yapıldı.
 
 ### Değiştirildi
+- **App.tsx:** "Component Test Sahnesi" yapısından çıkarılarak, oluşturulan tüm bölümlerin (`Hero`, `Features`, `Pricing`, `FAQ`, `Contact`) birleştirildiği ana sayfa yapısına dönüştürüldü.
 - App: Demo ekranı (`App.tsx`) güncellendi. 
   - "Detaylı Bilgi" ve "Sözleşme" senaryosu için Modal entegrasyonu yapıldı.
   - Mevcut iletişim formu `Card` bileşeni ile sarmalandı.
