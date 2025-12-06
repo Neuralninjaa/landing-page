@@ -1,0 +1,77 @@
+@use '../../styles/variables' as *; // Eğer variables varsa kullanabilirsin, yoksa renkleri hardcode yapabiliriz.
+
+.accordion {
+  width: 100%;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background-color: #fff;
+  overflow: hidden; // Köşelerin düzgün görünmesi için
+
+  &__item {
+    border-bottom: 1px solid #e5e7eb;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &__header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.2s ease;
+    
+    // Klavye odaklanması için (A11y)
+    &:focus-visible {
+      outline: 2px solid #3b82f6; // Primary color
+      outline-offset: -2px;
+      z-index: 1;
+    }
+
+    &:hover {
+      background-color: #f9fafb;
+    }
+  }
+
+  &__title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #1f2937;
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+    color: #6b7280;
+
+    // Aktif olduğunda ikonu döndür
+    .accordion__item--active & {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__content {
+    // display: none yerine height/max-height animasyonu daha karmaşıktır.
+    // Şimdilik basitlik ve performans için hidden attribute kullanıyoruz (TSX tarafında).
+    // Ancak görünür olduğunda stil verelim:
+    background-color: #fff;
+    
+    &[hidden] {
+      display: none;
+    }
+  }
+
+  &__body {
+    padding: 1rem 1.25rem;
+    color: #4b5563;
+    line-height: 1.6;
+    border-top: 1px solid #f3f4f6;
+  }
+}
