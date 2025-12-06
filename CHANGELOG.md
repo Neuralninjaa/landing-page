@@ -32,6 +32,11 @@ Bu proje için yapılan tüm değişiklikler bu dosyada belgelenecektir.
 - Proje kurulumu (Vite + React + TS) yapıldı.
 
 ### Değiştirildi
+- Update project favicon and page title
+- **Hero Arayüzü (UI Polish):** - Arka plana modern "Dot Pattern" (nokta deseni) ve maskeleme efekti eklendi.
+  - Başlık tipografisi büyütüldü ve görsel hiyerarşi güçlendirildi.
+  - Görsel alanına "Floating" (yüzme) animasyonu ve glassmorphism efekti eklendi.
+- **Layout:** `.container` genişliği artırıldı (1280px) ve ortalama sorunu giderildi; içerik artık sola yapışık değil.
 - **App.tsx:** "Component Test Sahnesi" yapısından çıkarılarak, oluşturulan tüm bölümlerin (`Hero`, `Features`, `Pricing`, `FAQ`, `Contact`) birleştirildiği ana sayfa yapısına dönüştürüldü.
 - App: Demo ekranı (`App.tsx`) güncellendi. 
   - "Detaylı Bilgi" ve "Sözleşme" senaryosu için Modal entegrasyonu yapıldı.
