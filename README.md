@@ -1,73 +1,181 @@
-# React + TypeScript + Vite
+# 🚀 Landing Page Projesi
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Modern, erişilebilir ve responsive bir ürün tanıtım landing page'i.
 
-Currently, two official plugins are available:
+## 🌐 Canlı Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🔗 [Demo Linki](https://vercel.com/neuralninjaas-projects/landing-page/G8Fph5MJrvgxsJYfqjv2Tt2rRX5s)
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ✨ Özellikler
 
-## Expanding the ESLint configuration
+### 🎨 Tema Sistemi
+- ✅ Dark/Light tema desteği
+- ✅ Smooth geçiş animasyonları (0.3s)
+- ✅ CSS Variables tabanlı tema yönetimi
+- ✅ Modern toggle switch
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 📱 Responsive Tasarım
+- ✅ Mobil-öncelikli yaklaşım (Mobile-First)
+- ✅ 3 Breakpoint: ≤640px, 641-1024px, ≥1025px
+- ✅ Grid/Flexbox ile esnek düzen
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### ♿ Erişilebilirlik
+- ✅ Semantic HTML
+- ✅ ARIA labels ve roles
+- ✅ Klavye navigasyonu
+- ✅ Focus indicators
+- ✅ Ekran okuyucu uyumlu
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### 🧩 Bileşenler (UI Library)
+- **Button**: 5 varyasyon (Primary, Secondary, Outline, Ghost, Danger)
+- **Input**: Label, placeholder, error state desteği
+- **Card**: Elevated ve Outlined varyasyonları
+- **Modal**: Keyboard support, backdrop close
+- **Accordion**: Smooth animations
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 📄 Sayfalar/Bölümler
+- **Hero**: Modern nokta deseni, floating animasyon
+- **Features**: 3 sütunlu grid, hover efektleri
+- **Pricing**: 3 plan, "En Popüler" vurgusu
+- **FAQ**: Accordion ile SSS
+- **Contact**: Form validasyonu
+
+---
+
+## 🛠️ Teknolojiler
+
+- **Framework**: React 18
+- **Language**: TypeScript
+- **Build Tool**: Vite
+- **Styling**: SCSS (BEM metodolojisi)
+- **Linting**: ESLint + Prettier
+
+---
+
+## 📦 Kurulum
+
+### Gereksinimler
+- Node.js 18+
+- npm veya yarn
+
+### Adımlar
+
+1. **Projeyi klonla**
+```bash
+git clone https://github.com/Neuralninjaa/landing-page.git
+cd landing-page
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+2. **Bağımlılıkları yükle**
+```bash
+npm install
 ```
+
+3. **Geliştirme sunucusunu başlat**
+```bash
+npm run dev
+```
+
+4. **Production build al**
+```bash
+npm run build
+```
+
+5. **Preview (build önizleme)**
+```bash
+npm run preview
+```
+
+---
+
+## 📂 Proje Yapısı
+
+```
+landing-page/
+├── src/
+│   ├── components/          # UI bileşenleri
+│   │   ├── Accordion/
+│   │   ├── Button/
+│   │   ├── Card/
+│   │   ├── Input/
+│   │   ├── Modal/
+│   │   └── ThemeToggle/
+│   ├── sections/            # Sayfa bölümleri
+│   │   ├── Hero/
+│   │   ├── Features/
+│   │   ├── Pricing/
+│   │   ├── FAQ/
+│   │   └── Contact/
+│   ├── styles/              # Global stiller
+│   │   ├── _variables.scss
+│   │   ├── _reset.scss
+│   │   └── main.scss
+│   ├── App.tsx
+│   └── main.tsx
+├── docs/
+│   └── adr/                 # Architecture Decision Records
+├── public/
+├── CHANGELOG.md
+├── README.md
+└── package.json
+```
+
+---
+
+## 🎨 Tasarım Kararları
+
+### Renk Paleti
+
+**Light Mode:**
+- Background: `#f5f7fa` (Soft off-white)
+- Surface: `#fafbfc`
+- Primary: `#3b82f6` (Blue)
+- Text: `#0f172a`
+
+**Dark Mode:**
+- Background: `#111827` (Dark gray)
+- Surface: `#1f2937`
+- Primary: `#60a5fa` (Light blue)
+- Text: `#f9fafb`
+
+### CSS Metodolojisi
+- BEM (Block Element Modifier) isimlendirme
+- SCSS ile modüler yapı
+- CSS Variables ile tema yönetimi
+
+---
+
+## 📊 Performans
+
+### Lighthouse Skorları
+- Performance: /100
+- Accessibility: /100
+- Best Practices: /100
+- SEO: /100
+
+*(Screenshot eklenecek)*
+
+---
+
+
+### Commit Kuralları
+Conventional Commits standardı kullanılıyor:
+- `feat:` Yeni özellik
+- `fix:` Bug düzeltme
+- `docs:` Dokümantasyon
+- `style:` Kod formatı
+- `refactor:` Kod iyileştirme
+- `test:` Test ekleme
+- `chore:` Genel işler
+
+---
+
+## 👨‍💻 Geliştirici
+
+**Yusuf Can Turhan**
+- GitHub: [@Neuralninjaa](https://github.com/Neuralninjaa)
+- LinkedIn: [www.linkedin.com/in/yusufcanturhan]
+
+---
