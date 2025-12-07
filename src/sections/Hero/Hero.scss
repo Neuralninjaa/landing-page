@@ -2,37 +2,38 @@
 
 .hero {
   position: relative;
-  padding: 8rem 0 6rem; // Üstten ve alttan boşluğu artırdık
-  background-color: #fff;
-  overflow: hidden; // Taşan desenleri gizle
+  padding: 8rem 0 6rem;
+  background-color: var(--bg-primary);
+  overflow: hidden;
 
-  background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
-  background-size: 32px 32px; // Noktalar arası mesafe
+  // Nokta deseni - dark temada daha koyu olacak
+  background-image: radial-gradient(var(--border-color) 1px, transparent 1px);
+  background-size: 32px 32px;
   
-  // Alt kısma doğru silikleşen maske (Fade out)
+  // Alt kısma doğru silikleşen maske
   mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
 
   &__container {
     display: grid;
-    grid-template-columns: 1fr 1fr; // Ekranı tam ikiye böl
+    grid-template-columns: 1fr 1fr;
     align-items: center;
     gap: 4rem;
     position: relative;
-    z-index: 1; // Desenin üstünde kalsın
+    z-index: 1;
 
     @media (max-width: 968px) {
-      grid-template-columns: 1fr; // Mobilde tek sütun
+      grid-template-columns: 1fr;
       text-align: center;
       gap: 3rem;
     }
   }
 
   &__content {
-    max-width: 600px; // Metin çok uzamasın, okunabilir kalsın
+    max-width: 600px;
     
     @media (max-width: 968px) {
-      margin: 0 auto; // Mobilde ortala
+      margin: 0 auto;
     }
   }
 
@@ -41,8 +42,9 @@
     font-weight: 800;
     line-height: 1.1;
     margin-bottom: 1.5rem;
-    color: #111827;
-    letter-spacing: -0.02em; 
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    transition: color 0.3s ease;
 
     @media (max-width: 768px) {
       font-size: 2.5rem;
@@ -50,9 +52,10 @@
   }
 
   .text-gradient {
-    background: linear-gradient(135deg, #2563eb 0%, #9333ea 100%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, #9333ea 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-clip: text;
     position: relative;
     
     // Altını çizen hafif bir vurgu
@@ -63,17 +66,19 @@
       left: 0;
       width: 100%;
       height: 10px;
-      background-color: rgba(37, 99, 235, 0.1); // Mavi şeffaf vurgu
+      background-color: color-mix(in srgb, var(--primary-color), transparent 90%);
       z-index: -1;
       transform: skewX(-10deg);
+      transition: background-color 0.3s ease;
     }
   }
 
   &__description {
     font-size: 1.25rem;
-    color: #4b5563;
+    color: var(--text-secondary);
     margin-bottom: 2.5rem;
     line-height: 1.6;
+    transition: color 0.3s ease;
   }
 
   &__actions {
@@ -87,29 +92,34 @@
 
   &__image {
     position: relative;
-    
-    // Görsele "yüzüyormuş" efekti (Floating Animation)
     animation: float 6s ease-in-out infinite;
 
     &-placeholder {
-      background: linear-gradient(135deg, #f3f4f6 0%, #ffffff 100%);
+      background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
       border-radius: 1.5rem;
       width: 100%;
-      height: 450px; // Biraz daha yüksek
+      height: 450px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #9ca3af;
+      color: var(--text-secondary);
       font-weight: 600;
-      border: 1px solid rgba(255, 255, 255, 0.5);
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
       
       // Glassmorphism hissiyatı
       box-shadow: 
         0 20px 25px -5px rgba(0, 0, 0, 0.1), 
-        0 10px 10px -5px rgba(0, 0, 0, 0.04),
-        inset 0 2px 4px rgba(255, 255, 255, 0.6);
+        0 10px 10px -5px rgba(0, 0, 0, 0.04);
     }
   }
+}
+
+// Dark temada daha belirgin shadow
+[data-theme='dark'] .hero__image-placeholder {
+  box-shadow: 
+    0 20px 25px -5px rgba(0, 0, 0, 0.3), 
+    0 10px 10px -5px rgba(0, 0, 0, 0.2);
 }
 
 // Yüzme Animasyonu

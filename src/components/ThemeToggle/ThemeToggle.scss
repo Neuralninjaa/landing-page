@@ -1,0 +1,88 @@
+@use '../../styles/variables';
+
+.theme-toggle {
+  position: relative;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  
+  &:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+    border-radius: 9999px;
+  }
+
+  &__track {
+    width: 60px;
+    height: 32px;
+    background-color: var(--bg-secondary);
+    border: 2px solid var(--border-color);
+    border-radius: 9999px;
+    position: relative;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+
+  &__thumb {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 24px;
+    height: 24px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    
+    svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    &--dark {
+      transform: translateX(28px);
+      background-color: #f59e0b; /* Amber rengi ay için */
+    }
+  }
+
+  &:hover &__track {
+    background-color: var(--border-color);
+    border-color: color-mix(in srgb, var(--border-color), black 15%);
+  }
+}
+
+// Light temada toggle daha belirgin olsun
+.theme-toggle__track {
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme='dark'] .theme-toggle__track {
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+// Responsive: Mobilde biraz küçült
+@media (max-width: 640px) {
+  .theme-toggle {
+    &__track {
+      width: 52px;
+      height: 28px;
+    }
+    
+    &__thumb {
+      width: 20px;
+      height: 20px;
+      
+      &--dark {
+        transform: translateX(24px);
+      }
+      
+      svg {
+        width: 12px;
+        height: 12px;
+      }
+    }
+  }
+}

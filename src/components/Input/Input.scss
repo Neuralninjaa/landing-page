@@ -1,64 +1,68 @@
-// src/components/Input/Input.scss
+@use '../../styles/variables' as *;
 
 .input-group {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem; // Label ile input arası boşluk
+  gap: 0.5rem;
   width: 100%;
 
-  // Label Stili
   &__label {
-    font-size: 0.875rem; // 14px
+    font-size: 0.875rem;
     font-weight: 500;
-    color: var(--text-color, #333);
+    color: var(--text-primary);
     cursor: pointer;
+    transition: color 0.3s ease;
   }
 
-  // Input Alanı Stili
   &__control {
     padding: 0.75rem 1rem;
     font-size: 1rem;
-    border: 1px solid var(--border-color, #ccc);
-    border-radius: 0.5rem; // Button ile uyumlu olması için
-    background-color: var(--bg-color, #fff);
-    color: var(--text-color, #333);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
     transition: all 0.2s ease-in-out;
     width: 100%;
 
-    // Placeholder rengi
     &::placeholder {
-      color: var(--placeholder-color, #999);
+      color: var(--text-secondary);
+      opacity: 0.6;
     }
 
-    // Focus (Tıklanma) Durumu
     &:focus {
       outline: none;
-      border-color: var(--primary-color, #007bff);
-      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary-color), transparent 90%);
     }
 
-    // Disabled (Pasif) Durumu
     &:disabled {
-      background-color: var(--disabled-bg, #f5f5f5);
+      background-color: var(--bg-secondary);
       cursor: not-allowed;
-      opacity: 0.7;
+      opacity: 0.6;
     }
 
-    // Hata Durumu (Modifier)
     &--error {
-      border-color: var(--error-color, #dc3545);
+      border-color: #ef4444;
       
       &:focus {
-        box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
-        border-color: var(--error-color, #dc3545);
+        box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+        border-color: #ef4444;
       }
     }
   }
 
-  // Hata Mesajı Stili
   &__error-text {
-    font-size: 0.75rem; // 12px
-    color: var(--error-color, #dc3545);
-    min-height: 1.2em; // Hata yokken zıplamayı engellemek için opsiyonel
+    font-size: 0.75rem;
+    color: #ef4444;
+    min-height: 1.2em;
+  }
+}
+
+// Dark temada input daha belirgin olsun
+[data-theme='dark'] .input-group__control {
+  background-color: var(--bg-secondary);
+  
+  &:focus {
+    background-color: var(--bg-primary);
   }
 }

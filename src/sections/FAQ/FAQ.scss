@@ -1,6 +1,9 @@
+@use '../../styles/variables' as *;
+
 .faq {
   padding: 5rem 0;
-  background-color: #ffffff;
+  background-color: var(--bg-primary);
+  transition: background-color 0.3s ease;
 
   &__header {
     text-align: center;
@@ -11,16 +14,18 @@
   &__title {
     font-size: 2.25rem;
     font-weight: 700;
-    color: #111827;
+    color: var(--text-primary);
     margin-bottom: 1rem;
+    transition: color 0.3s ease;
   }
 
   &__subtitle {
-    color: #6b7280;
+    color: var(--text-secondary);
+    transition: color 0.3s ease;
   }
 
   &__content {
-    max-width: 800px; // Accordion çok geniş olmasın, okunabilir kalsın
+    max-width: 800px;
     margin: 0 auto;
   }
 }

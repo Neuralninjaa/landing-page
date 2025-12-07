@@ -4,6 +4,16 @@ Bu proje için yapılan tüm değişiklikler bu dosyada belgelenecektir.
 
 ## [Unreleased]
 ### Eklendi
+- **Dark/Light Tema Sistemi:** Kullanıcı tercihine göre açık ve koyu tema desteği eklendi.
+  - ThemeToggle bileşeni: Modern toggle switch ile tema geçişi.
+  - CSS Variables: Tüm renkler tema değişkenlerine dönüştürüldü (--bg-primary, --text-primary, vb.).
+  - Smooth Transitions: 0.3s geçiş animasyonları ile akıcı tema değişimi.
+  - Light Mode: Soft off-white renk paleti (#f5f7fa) - göze yumuşak.
+  - Dark Mode: Modern koyu gri paleti (#111827) - rahat okuma.
+  - Tüm bileşenler tema ile uyumlu: Hero, Features, Pricing, FAQ, Contact, Modal, Accordion, Input, Card, Button.
+  - Accordion: Smooth açılma/kapanma animasyonu (0.4s cubic-bezier).
+  - Button: Gradient efektler, glow ve lift animasyonları.
+  - Accessibility: Klavye erişimi, aria-label desteği.
 - **Landing Page Bölümleri:** Sayfa yapısı modüler hale getirildi ve `src/sections` altına taşındı.
   - `Hero`: Ana karşılama ekranı.
   - `Features`: Özellikler ızgarası (Grid).
