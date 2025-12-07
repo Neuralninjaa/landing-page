@@ -1,17 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import './styles/main.scss';
 
-// Bileşenler
+// Bileşenler - Hemen yükle
 import { Modal } from './components/Modal/Modal';
 import { Button } from './components/Button/Button';
 import { ThemeToggle } from './components/ThemeToggle/ThemeToggle';
 
-// Bölümler
+// Bölümler - Lazy load (Hero hariç)
 import { Hero } from './sections/Hero/Hero';
-import { Features } from './sections/Features/Features';
-import { Pricing } from './sections/Pricing/Pricing';
-import { FAQ } from './sections/FAQ/FAQ';
-import { Contact } from './sections/Contact/Contact';
+const Features = lazy(() => import('./sections/Features/Features').then(m => ({ default: m.Features })));
+const Pricing = lazy(() => import('./sections/Pricing/Pricing').then(m => ({ default: m.Pricing })));
+const FAQ = lazy(() => import('./sections/FAQ/FAQ').then(m => ({ default: m.FAQ })));
+const Contact = lazy(() => import('./sections/Contact/Contact').then(m => ({ default: m.Contact })));
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -40,10 +40,22 @@ function App() {
       </div>
 
       <Hero />
-      <Features />
-      <Pricing />
-      <FAQ />
-      <Contact />
+      
+      <Suspense fallback={<div style={{ minHeight: '200px' }} />}>
+        <Features />
+      </Suspense>
+      
+      <Suspense fallback={<div style={{ minHeight: '400px' }} />}>
+        <Pricing />
+      </Suspense>
+      
+      <Suspense fallback={<div style={{ minHeight: '300px' }} />}>
+        <FAQ />
+      </Suspense>
+      
+      <Suspense fallback={<div style={{ minHeight: '300px' }} />}>
+        <Contact />
+      </Suspense>
 
       {/* Footer */}
       <footer style={{
