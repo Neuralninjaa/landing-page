@@ -150,12 +150,11 @@ landing-page/
 ## 📊 Performans
 
 ### Lighthouse Skorları
-- Performance: /100
-- Accessibility: /100
-- Best Practices: /100
-- SEO: /100
+- Performance: 65/100
+- Accessibility: 95/100
+- Best Practices: 93/100
+- SEO: 50/100
 
-*(Screenshot eklenecek)*
 
 ---
 
