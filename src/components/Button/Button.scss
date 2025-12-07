@@ -1,8 +1,6 @@
-/* Değişkenleri çağırmak için doğru yolu veriyoruz */
 @use '../../styles/variables';
 
 .ui-btn {
-  /* Temel Ayarlar */
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -10,12 +8,12 @@
   cursor: pointer;
   font-family: var(--font-main);
   border-radius: var(--radius-md);
-  font-weight: 500;
+  font-weight: 600; /* 500'den 600'e çıkardık - daha bold */
   transition: all 0.2s ease-in-out;
   line-height: 1;
   gap: 0.5rem;
 
-  /* --- Boyutlar (Sizes) --- */
+  /* Boyutlar */
   &--sm {
     padding: 0.5rem 0.75rem;
     font-size: 0.875rem;
@@ -36,17 +34,28 @@
     display: flex;
   }
 
-  /* --- Varyasyonlar (Variants) --- */
+  /* PRIMARY - Daha Canlı ve Belirgin */
   &--primary {
-    background-color: var(--primary-color);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-hover) 100%);
     color: #ffffff;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3), 
+                0 1px 3px rgba(0, 0, 0, 0.12);
 
     &:hover:not(:disabled) {
-      // Rengi %10 koyulaştırır (SCSS özelliği)
-      background-color: color-mix(in srgb, var(--primary-color), black 10%);
+      background: linear-gradient(135deg, var(--primary-hover) 0%, var(--primary-color) 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4), 
+                  0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(0);
+      box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
     }
   }
 
+  /* SECONDARY */
   &--secondary {
     background-color: var(--bg-secondary);
     color: var(--text-primary);
@@ -57,17 +66,29 @@
     }
   }
 
+  /* OUTLINE */
   &--outline {
-    background-color: transparent;
-    border: 1px solid var(--primary-color);
+    background-color: rgba(59, 130, 246, 0.08); /* Hafif mavi arka plan */
+    border: 2px solid var(--primary-color);
     color: var(--primary-color);
+    font-weight: 600;
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     &:hover:not(:disabled) {
       background-color: var(--primary-color);
       color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(59, 130, 246, 0.3),
+                  0 0 0 4px rgba(59, 130, 246, 0.1);
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(0);
     }
   }
   
+  /* DANGER */
   &--danger {
     background-color: #ef4444;
     color: white;
@@ -77,6 +98,7 @@
     }
   }
 
+  /* GHOST */
   &--ghost {
     background-color: transparent;
     color: var(--text-secondary);
@@ -87,7 +109,7 @@
     }
   }
 
-  /* --- Durumlar (States) --- */
+  /* Durumlar */
   &:disabled,
   &--loading {
     opacity: 0.6;
@@ -98,5 +120,35 @@
   &:focus-visible {
     outline: 2px solid var(--primary-color);
     outline-offset: 2px;
+  }
+}
+
+/* Dark temada primary button ekstra parlak */
+[data-theme='dark'] .ui-btn--primary {
+  background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+  box-shadow: 0 2px 8px rgba(96, 165, 250, 0.4), 
+              0 0 0 1px rgba(96, 165, 250, 0.2);
+
+  &:hover:not(:disabled) {
+    background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+    box-shadow: 0 6px 16px rgba(96, 165, 250, 0.5), 
+                0 0 0 1px rgba(96, 165, 250, 0.3),
+                0 0 20px rgba(96, 165, 250, 0.2);
+  }
+}
+
+/* Dark temada outline button parlak */
+[data-theme='dark'] .ui-btn--outline {
+  background-color: rgba(96, 165, 250, 0.12);
+  border-color: #60a5fa;
+  color: #60a5fa;
+  box-shadow: 0 0 0 0 rgba(96, 165, 250, 0);
+
+  &:hover:not(:disabled) {
+    background-color: #60a5fa;
+    color: #0f172a; /* Koyu yazı daha net */
+    box-shadow: 0 6px 16px rgba(96, 165, 250, 0.4),
+                0 0 0 4px rgba(96, 165, 250, 0.15),
+                0 0 20px rgba(96, 165, 250, 0.2);
   }
 }

@@ -1,9 +1,12 @@
+@use '../../styles/variables' as *;
+
 .contact {
   padding: 5rem 0;
-  background-color: #f9fafb;
+  background-color: var(--bg-secondary);
+  transition: background-color 0.3s ease;
 
   &__wrapper {
-    max-width: 500px; // Formun genişliğini kısıtla
+    max-width: 500px;
     margin: 0 auto;
   }
 
@@ -15,12 +18,14 @@
   &__title {
     font-size: 1.875rem;
     font-weight: 700;
-    color: #111827;
+    color: var(--text-primary);
     margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
   }
 
   &__text {
-    color: #6b7280;
+    color: var(--text-secondary);
+    transition: color 0.3s ease;
   }
 
   &__form-group {

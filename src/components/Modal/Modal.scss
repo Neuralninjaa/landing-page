@@ -1,91 +1,114 @@
+@use '../../styles/variables' as *;
+
 .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5); // Yarı saydam siyah
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 1rem;
+  animation: fadeIn 0.2s ease-out;
+}
+
+// Dark temada overlay daha koyu
+[data-theme='dark'] .modal-overlay {
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.modal {
+  background-color: var(--bg-primary);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+  animation: scaleUp 0.2s ease-out;
+  transition: background-color 0.3s ease;
+
+  &__header {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    z-index: 1000; // Her şeyin üstünde olması için
-    padding: 1rem; // Mobilde kenarlara yapışmaması için
-    
-    // Fade-in animasyonu
-    animation: fadeIn 0.2s ease-out;
+    padding: 1.25rem;
+    border-bottom: 1px solid var(--border-color);
+    transition: border-color 0.3s ease;
   }
-  
-  .modal {
-    background-color: #fff;
-    border-radius: 12px;
-    width: 100%;
-    max-width: 500px; // Masaüstünde çok geniş olmasın
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-    max-height: 90vh; // Ekran boyunu aşarsa scroll çıksın
-    
-    // Scale-up animasyonu
-    animation: scaleUp 0.2s ease-out;
-  
-    &__header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.25rem;
-      border-bottom: 1px solid #e5e7eb;
+
+  &__title {
+    margin: 0;
+    font-size: 1.25rem;
+    color: var(--text-primary);
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+
+  &__close-btn {
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    line-height: 1;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 4px;
+    transition: all 0.2s;
+
+    &:hover {
+      color: var(--text-primary);
+      background-color: var(--bg-secondary);
     }
-  
-    &__title {
+
+    &:focus-visible {
+      outline: 2px solid var(--primary-color);
+      outline-offset: 2px;
+    }
+  }
+
+  &__content {
+    padding: 1.5rem;
+    overflow-y: auto;
+    color: var(--text-primary); /* text-secondary'den primary'ye değiştirdik */
+    line-height: 1.6;
+    transition: color 0.3s ease;
+    
+    p {
+      color: var(--text-primary);
       margin: 0;
-      font-size: 1.25rem;
-      color: #111827;
-      font-weight: 600;
-    }
-  
-    &__close-btn {
-      background: transparent;
-      border: none;
-      font-size: 1.5rem;
-      line-height: 1;
-      color: #6b7280;
-      cursor: pointer;
-      padding: 0.25rem;
-      border-radius: 4px;
-      transition: color 0.2s;
-  
-      &:hover {
-        color: #111827;
-        background-color: #f3f4f6;
-      }
-    }
-  
-    &__content {
-      padding: 1.5rem;
-      overflow-y: auto;
-      color: #4b5563;
-      line-height: 1.6;
-    }
-  
-    &__footer {
-      padding: 1rem 1.25rem;
-      border-top: 1px solid #e5e7eb;
-      display: flex;
-      justify-content: flex-end;
-      gap: 0.75rem;
-      background-color: #f9fafb;
-      border-bottom-left-radius: 12px;
-      border-bottom-right-radius: 12px;
     }
   }
-  
-  // Animasyonlar
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+
+  &__footer {
+    padding: 1rem 1.25rem;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    background-color: var(--bg-secondary);
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    transition: all 0.3s ease;
   }
-  
-  @keyframes scaleUp {
-    from { transform: scale(0.95); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-  }
+}
+
+// Dark temada modal daha belirgin shadow
+[data-theme='dark'] .modal {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5),
+              0 0 0 1px var(--border-color);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleUp {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}

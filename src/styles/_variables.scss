@@ -1,15 +1,21 @@
 :root {
-  /* Light Mode (Varsayılan) */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f3f4f6;
-  --text-primary: #111827;
-  --text-secondary: #6b7280;
+  /* Light Mode - Extra Soft (Göze Çok Yumuşak) */
+  --bg-primary: #f5f7fa;        /* Daha koyu gri-beyaz */
+  --bg-secondary: #e8ecf1;      /* İkinci seviye gri */
+  --bg-surface: #fafbfc;        /* Card için hafif gri-beyaz */
   
-  --primary-color: #3b82f6; /* Marka Rengi: Mavi */
-  --primary-hover: #2563eb;
+  --text-primary: #0f172a;      /* Daha net siyah */
+  --text-secondary: #475569;    /* Daha koyu gri (okunabilir) */
+  --text-main: #1e293b;         /* Card için koyu */
   
-  --border-color: #e5e7eb;
+  --primary-color: #3b82f6;     /* Daha parlak mavi */
+  --primary-hover: #2563eb;     /* Hover koyu mavi */
+  
+  --border-color: #cbd5e1;      /* Daha belirgin border */
+  
   --radius-md: 8px;
+  --radius-lg: 12px;
+  
   --font-main: 'Inter', system-ui, sans-serif;
 }
 
@@ -17,11 +23,14 @@
 [data-theme='dark'] {
   --bg-primary: #111827;
   --bg-secondary: #1f2937;
+  --bg-surface: #1f2937; /* Card için */
+  
   --text-primary: #f9fafb;
   --text-secondary: #9ca3af;
+  --text-main: #e5e7eb; /* Card için alternatif */
   
-  --primary-color: #60a5fa;
-  --primary-hover: #3b82f6;
+  --primary-color: #60a5fa;     /* Parlak mavi (dark mode) */
+  --primary-hover: #3b82f6;     /* Hover biraz koyu */
   
   --border-color: #374151;
 }

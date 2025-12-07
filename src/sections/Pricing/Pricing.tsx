@@ -1,4 +1,3 @@
-import React from 'react';
 import { Card } from '../../components/Card/Card';
 import { Button } from '../../components/Button/Button';
 import './Pricing.scss';
@@ -11,7 +10,7 @@ export const Pricing = () => {
       period: '/ay',
       features: ['1 Proje Hakkı', 'Temel Bileşenler', 'Topluluk Desteği'],
       buttonVariant: 'outline',
-      cardVariant: 'outlined',
+      cardVariant: 'elevated',
       isPopular: false
     },
     {
@@ -20,7 +19,7 @@ export const Pricing = () => {
       period: '/ay',
       features: ['Sınırsız Proje', 'Tüm UI Kütüphanesi', '7/24 Öncelikli Destek', 'Gelişmiş Analitik'],
       buttonVariant: 'primary',
-      cardVariant: 'elevated', // Bu kart daha belirgin olacak
+      cardVariant: 'elevated', 
       isPopular: true
     },
     {
@@ -29,7 +28,7 @@ export const Pricing = () => {
       period: '/ay',
       features: ['Özel Sunucu', 'SLA Garantisi', 'Ekip Yönetimi', 'Size Özel Geliştirme'],
       buttonVariant: 'outline',
-      cardVariant: 'outlined',
+      cardVariant: 'elevated',
       isPopular: false
     }
   ];
@@ -68,7 +67,6 @@ export const Pricing = () => {
                   ))}
                 </ul>
 
-                {/* Butonu en alta itmek için margin-top: auto kullanacağız */}
                 <div style={{ marginTop: 'auto' }}>
                   <Button variant={plan.buttonVariant as any} fullWidth>
                     Planı Seç
