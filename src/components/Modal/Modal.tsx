@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { Button } from '../Button/Button'; // Kapatma butonu için mevcut butonumuzu kullanıyoruz
 import './Modal.scss';
 
 interface ModalProps {
